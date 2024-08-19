@@ -13,8 +13,9 @@ public class App {
     void run(){
         System.out.println("== 게시판 앱 ==");
         int count = 1;
-        List<String> title = new ArrayList<>();
-        List<String> detail = new ArrayList<>();
+        List<Article> articleList = new ArrayList<>();
+//        List<String> title = new ArrayList<>();
+//        List<String> detail = new ArrayList<>();
         while (true) {
             System.out.print("명령)");
             String command = sc.nextLine().trim();
@@ -24,16 +25,21 @@ public class App {
             else if (command.equals("등록")){
                 System.out.print("제목:");
                 String tit = sc.nextLine().trim();
-                title.add(tit);
+
                 System.out.print("내용 : ");
                 String det = sc.nextLine().trim();
-                detail.add(det);
+
+
+                Article article = new Article(count, tit, det);
+                articleList.add(article);
+
                 System.out.println(count + "번 개시물이 출렸되었습니다.");
                 count++;
             }
             else if (command.equals("목록")){
                 for(int i = 1; i< count; i++){
-                    System.out.println(i +" / "+title.get(i-1) + " / " +detail.get(i-1));
+                    Article article =  articleList.get(i-1);
+                    System.out.printf("%d, %s, %s\n", article.getid(), article.getTitle(), article.getDetail());
                 }
             }
         }
@@ -41,6 +47,3 @@ public class App {
 }
 
 
-//class space {
-//
-//}
