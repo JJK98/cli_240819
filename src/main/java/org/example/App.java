@@ -33,11 +33,11 @@ public class App {
                 Article article = new Article(count, tit, det);
                 articleList.add(article);
 
-                System.out.println(count + "번 개시물이 출렸되었습니다.");
+                System.out.println(count + "번 개시물이 출력되었습니다.");
                 count++;
             }
             else if (command.equals("목록")){
-                for(int i = 1; i< count; i++){
+                for(int i = count-1; i>=1; i--){
                     Article article =  articleList.get(i-1);
                     System.out.printf("%d, %s, %s\n", article.getid(), article.getTitle(), article.getDetail());
                 }
