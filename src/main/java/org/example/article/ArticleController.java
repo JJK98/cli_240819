@@ -2,7 +2,6 @@ package org.example.article;
 
 import org.example.Container;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,8 +18,10 @@ public class ArticleController {
 
         Article article = new Article(lastId, subject, content);
         articleList.add(article);
+
         lastId++;
     }
+
     public void list () {
         System.out.println("번호 / 제목 / 내용");
         System.out.println("----------------------");
@@ -28,15 +29,11 @@ public class ArticleController {
             Article article = articleList.get(i);
             System.out.printf("%d / %s / %s\n", article.getId(), article.getSubject(), article.getContent());
         }
+
     }
-    public void delete (String command) {
-        String[] commandList = command.split("\\?", 2);
-        String actionCode = commandList[0];
-        String[] paramsStr = commandList[1].split("=", 2);
-        String key = paramsStr[0];
-        String value = paramsStr[1];
-        int idx = Integer.parseInt(value);
+    public void delete (int idx) {
         Article article = _getFindById(idx);
+
         if (article == null) {
             System.out.printf("%d번 게시물은 존재하지 않습니다.\n", idx);
         } else {
@@ -44,14 +41,9 @@ public class ArticleController {
             System.out.printf("%d번 게시물이 삭제되었습니다.\n", idx);
         }
     }
-    public void modify (String command) {
-        String[] commandList = command.split("\\?", 2);
-        String actionCode = commandList[0];
-        String[] paramsStr = commandList[1].split("=", 2);
-        String key = paramsStr[0];
-        String value = paramsStr[1];
-        int idx = Integer.parseInt(value);
+    public void modify (int idx) {
         Article article = _getFindById(idx);
+
         if (article == null) {
             System.out.printf("%d번 게시물은 존재하지 않습니다.\n", idx);
         } else {
@@ -69,12 +61,15 @@ public class ArticleController {
             System.out.printf("%d번 게시물이 수정되었습니다.\n", idx);
         }
     }
+
+
     private Article _getFindById(int id) {
         for (Article item : articleList) {
             if (item.getId() == id) {
                 return item;
             }
         }
+
         return null;
     }
 }
