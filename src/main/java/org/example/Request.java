@@ -6,20 +6,18 @@ import java.util.Map;
 public class Request {
     private String actionCode;
     private Map<String, String> params = new HashMap<>();
-    private int idx;
 
     public Request(String command) {
-        String[] commandList = command.split("\\?", 2);
+        String[] commandList = command.split("\\?");
 
         actionCode = commandList[0];
 
         if (commandList.length == 1) return;
 
-
         String[] paramsList = commandList[1].split("&");
 
-        for (String paramsRow: paramsList) {
-            String[] paramsStr = commandList[1].split("=", 2);
+        for (String paramsRow : paramsList) {
+            String[] paramsStr = paramsRow.split("=", 2);
             String key = paramsStr[0];
             String value = paramsStr[1];
             params.put(key, value);
