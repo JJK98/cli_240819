@@ -23,6 +23,7 @@ public class ArticleController {
         int id = articleService.create(subject, content);
 
         System.out.printf("%d번 게시물이 등록되었습니다.\n", id);
+
     }
 
     public void list() {
@@ -51,6 +52,8 @@ public class ArticleController {
         } else {
             articleService.remove(article);
             System.out.printf("%d번 게시물이 삭제되었습니다.\n", id);
+
+
         }
     }
 
