@@ -27,7 +27,8 @@ public class Request {
     public String getActionCode() {
         return actionCode;
     }
-    public String getParams (String key) {
+
+    public String getParams(String key) {
         return params.get(key);
     }
 }
