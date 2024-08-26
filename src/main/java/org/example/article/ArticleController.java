@@ -36,13 +36,41 @@ public class ArticleController {
         }
 
     }
-    public void delete (Request request) {
-        int id = _getIntParam(request.getParams("id"));
+//    public void delete (Request request) {
+//
+//        int id = _getIntParam(request.getParams("id"));
+//
+//
+//        if (id == -1) {
+//            System.out.println("잘못된 입력입니다.");
+//            return;
+//        }
+//
+//        Article article = this.articleService.getFindById(id);
+//
+//        if (article == null) {
+//            System.out.printf("%d번 게시물은 존재하지 않습니다.\n", id);
+//        } else {
+//            articleService.remove(article);
+//            System.out.printf("%d번 게시물이 삭제되었습니다.\n", id);
+//        }
+//    }
+public void delete(Request request) {
+    String idParam = request.getParams("id");
+    // 쉼표로 구분된 문자열을 리스트로 변환
+    String[] ids = idParam.split(",");
 
+    if (ids.length == 0) {
+        System.out.println("잘못된 입력입니다.");
+        return;
+    }
+
+    for (String idStr : ids) {
+        int id = _getIntParam(idStr);
 
         if (id == -1) {
-            System.out.println("잘못된 입력입니다.");
-            return;
+            System.out.printf("잘못된 입력입니다: %s\n", idStr);
+            continue;
         }
 
         Article article = this.articleService.getFindById(id);
@@ -52,10 +80,10 @@ public class ArticleController {
         } else {
             articleService.remove(article);
             System.out.printf("%d번 게시물이 삭제되었습니다.\n", id);
-
-
         }
     }
+}
+
 
     public void modify (Request request) {
         int id = _getIntParam(request.getParams("id"));

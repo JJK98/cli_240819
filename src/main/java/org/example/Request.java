@@ -20,6 +20,7 @@ public class Request {
             String[] paramsStr = paramsRow.split("=", 2);
             String key = paramsStr[0];
             String value = paramsStr[1];
+            String[] val = value.split(",");
             params.put(key, value);
         }
     }
